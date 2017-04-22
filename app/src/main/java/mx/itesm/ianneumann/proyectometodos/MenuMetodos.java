@@ -1,5 +1,7 @@
 package mx.itesm.ianneumann.proyectometodos;
 
+import android.graphics.*;
+import android.opengl.*;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -16,6 +18,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import java.util.ArrayList;
+
 public class MenuMetodos extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -25,7 +29,7 @@ public class MenuMetodos extends AppCompatActivity
         setContentView(R.layout.activity_menu_metodos);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        android.graphics.Matrix m;
         /*FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +89,7 @@ public class MenuMetodos extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        Fragment fragment = null;
+        Metodo fragment = null;
 
         switch (id){
             case(R.id.GaussJordan):
@@ -106,6 +110,8 @@ public class MenuMetodos extends AppCompatActivity
                 break;
         }
 
+        fragment.setMenu(this);
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
 
@@ -115,5 +121,12 @@ public class MenuMetodos extends AppCompatActivity
         }
 
         return true;
+    }
+
+    public void mostrarResultados(ArrayList<View> resultado){
+        PantallaResultados pantallaResultados = new PantallaResultados();
+        pantallaResultados.setResultado(resultado);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.frame_container,pantallaResultados).commit();
     }
 }
