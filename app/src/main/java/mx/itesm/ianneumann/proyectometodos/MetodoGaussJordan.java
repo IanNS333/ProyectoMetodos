@@ -1,18 +1,11 @@
 package mx.itesm.ianneumann.proyectometodos;
 
 
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.text.InputType;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -77,7 +70,7 @@ public class MetodoGaussJordan extends MetodoUnaMatriz {
                     instrucciones.add(texto);
                     temporal = new ArrayList<>(m.getRow(i));
                     Matrix.multiply(temporal,-coeficiente);
-                    m.addRow(j,temporal);
+                    m.addToRow(j,temporal);
                     instrucciones.add(m.crearTablaResultado(new TableLayout(getContext())));
                 }
             }

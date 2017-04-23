@@ -1,9 +1,6 @@
 package mx.itesm.ianneumann.proyectometodos;
 
 import android.content.Context;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.support.design.widget.TabLayout;
 import android.text.InputType;
 import android.view.Gravity;
 import android.widget.EditText;
@@ -11,9 +8,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.StringTokenizer;
+import java.util.NavigableMap;
 
 /**
  * Created by Ian Neumann on 21/04/2017.
@@ -37,7 +33,10 @@ public class Matrix {
     }
 
     public Matrix(Matrix matrix){
-        datos = new ArrayList<>(matrix.getData());
+        datos = new ArrayList<>();
+        for(ArrayList<Double> d : matrix.getData()) {
+            datos.add(new ArrayList<>(d));
+        }
     }
 
     public Matrix(ArrayList<ArrayList<Double>> datos){
@@ -54,10 +53,17 @@ public class Matrix {
 
     public ArrayList<Double> getColumn(int i){
         ArrayList<Double> resultado = new ArrayList<>();
-        for(int j = 0; j < datos.size();i++){
-            resultado.add(datos.get(i).get(j));
+        for(int j = 0; j < datos.size();j++){
+            resultado.add(datos.get(j).get(i));
         }
         return resultado;
+    }
+
+    public void setColumn(int i,ArrayList<Double> list){
+
+        for(int j = 0; j < datos.size();j++){
+            datos.get(j).set(i,list.get(j));
+        }
     }
 
     public void multiplyRow(int indice, Double value){
@@ -73,7 +79,7 @@ public class Matrix {
         return datos;
     }
 
-    public void addRow(int resultIndex,int rowIndex){
+    public void addToRow(int resultIndex, int rowIndex){
         Double a,b;
         for(int j = 0; j < datos.get(resultIndex).size() ;j++){
             a = datos.get(resultIndex).get(j);
@@ -82,7 +88,7 @@ public class Matrix {
         }
     }
 
-    public void addRow(int indice,ArrayList<Double> list){
+    public void addToRow(int indice, ArrayList<Double> list){
         Double a,b;
         for(int j = 0; j < datos.get(indice).size() ;j++){
             a = datos.get(indice).get(j);
@@ -103,6 +109,17 @@ public class Matrix {
     public TableLayout crearTablaResultado(TableLayout tableLayout){
         tableLayout.removeAllViews();
         return addData(tableLayout,datos,false);
+    }
+    public TableLayout crearTablaResultadoRowHeaders(TableLayout tableLayout,ArrayList<String> headers){
+        tableLayout.removeAllViews();
+        return addDataRowHeaders(tableLayout,datos,false,headers);
+    }
+
+    private static TableLayout addDataRowHeaders(TableLayout tableLayout,ArrayList<ArrayList<Double>> matriz,boolean editable,ArrayList<String> headers) {
+        for(int i = 0; i< matriz.size();i++){
+            tableLayout.addView(addRowWithHeader(new ArrayList<Object>(matriz.get(i)),tableLayout.getContext(),editable, headers.get(i)));
+        }
+        return tableLayout;
     }
 
     public void inverse(){
@@ -163,12 +180,30 @@ public class Matrix {
         return tableLayout;
     }
 
-    private static TableRow addRow(ArrayList<Object> data, Context context,boolean editable){
+    private static TableRow addRow(ArrayList<Object> data, Context context, boolean editable){
         TableRow tr;
         tr = new TableRow(context);
         tr.setLayoutParams(new TableLayout.LayoutParams(
                 TableLayout.LayoutParams.WRAP_CONTENT,
                 TableLayout.LayoutParams.WRAP_CONTENT));
+        for (int i = 0; i < data.size();i++){
+            if(editable){
+                tr.addView(addEditableCell(data.get(i).toString(),context));
+            }
+            else {
+                tr.addView(addUneditableCell(String.format("%.3f",data.get(i)),context));
+            }
+        }
+        return tr;
+    }
+
+    private static TableRow addRowWithHeader(ArrayList<Object> data, Context context, boolean editable,String header){
+        TableRow tr;
+        tr = new TableRow(context);
+        tr.setLayoutParams(new TableLayout.LayoutParams(
+                TableLayout.LayoutParams.WRAP_CONTENT,
+                TableLayout.LayoutParams.WRAP_CONTENT));
+        tr.addView(addUneditableCell(header,context));
         for (int i = 0; i < data.size();i++){
             if(editable){
                 tr.addView(addEditableCell(data.get(i).toString(),context));
@@ -259,7 +294,7 @@ public class Matrix {
                 coeficiente = datos.get(j).get(i);
                 temporal = new ArrayList<>(getRow(i));
                 Matrix.multiply(temporal,-coeficiente);
-                addRow(j,temporal);
+                addToRow(j,temporal);
             }
         }
     }
@@ -276,7 +311,7 @@ public class Matrix {
                 coeficiente = m.getData().get(j).get(i);
                 temporal = new ArrayList<>(m.getRow(i));
                 Matrix.multiply(temporal,-coeficiente);
-                m.addRow(j,temporal);
+                m.addToRow(j,temporal);
             }
         }
         return m;
@@ -298,5 +333,22 @@ public class Matrix {
         }
         m = new Matrix(d);
         return m;
+    }
+
+    public void transpose() {
+        ArrayList<ArrayList<Double>> nuevaMatriz = new ArrayList<>();
+        for(int i = 0; i < datos.get(0).size();i++){
+            nuevaMatriz.add(new ArrayList<Double>());
+            for(int j = 0; j < datos.size();j++){
+                nuevaMatriz.get(i).add(0.0);
+            }
+        }
+        Double temp;
+        for(int i = 0; i < datos.size();i++){
+            for(int j = 0; j < datos.get(i).size();j++){
+                nuevaMatriz.get(j).set(i,datos.get(i).get(j));
+            }
+        }
+        datos = nuevaMatriz;
     }
 }

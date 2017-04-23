@@ -22,13 +22,29 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:textColor="#000"
-                    android:text="Favor de insertar una matriz para el metodo de Gauss"/>
+                    android:text="Favor de insertar un sistema de ecuaciones para el metodo de Gauss-Siedel. Es necesario que la diagonal sea dominante para que el metodo converga."/>
+            </TableRow>
+
+            <TableRow android:weightSum="1"
+                android:layout_margin="10dp">
+                <TextView android:layout_width="0px"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.5"
+                    android:textColor="#000"
+                    android:text="Inserte una precision en escala del 0 - 99.999..."/>
+                <EditText
+                    android:id="@+id/gauss_siedel_porcentaje"
+                    android:layout_width="0px"
+                    android:layout_weight="0.5"
+                    android:text="90"
+                    android:textAlignment="center"
+                    android:inputType="number|numberDecimal"/>
             </TableRow>
 
             <TableRow>
                 <HorizontalScrollView>
                     <TableLayout
-                        android:id="@+id/gauss_jordan_table"
+                        android:id="@+id/gauss_siedel_table"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content">
                         <TableRow>
@@ -46,7 +62,7 @@
                     android:layout_marginTop="10dp"
                     android:text="Aceptar"
                     android:textAlignment="center"
-                    android:id="@+id/gauss_jordan_aceptar"
+                    android:id="@+id/gauss_siedel_aceptar"
                     />
             </TableRow>
         </TableLayout>

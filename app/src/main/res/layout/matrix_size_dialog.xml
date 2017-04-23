@@ -4,6 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:stretchColumns="*">
+    <TableRow>
+        <TextView
+            android:layout_span="2"
+            android:textColor="#000"
+            android:text="Por favor inserte el alto y el ancho de la matriz para el metodo solicitado.">
+        </TextView>
+    </TableRow>
     <TableRow
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -11,11 +18,13 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Alto"
+            android:textColor="#000"
             android:layout_gravity="center"/>
         <TextView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Ancho"
+            android:textColor="#000"
             android:layout_gravity="center"/>
     </TableRow>
     <TableRow

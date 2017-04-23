@@ -3,14 +3,14 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/GaussJordan"
-            android:title="Gauus-Jordan" />
+            android:id="@+id/Gauss"
+            android:title="Gauss" />
         <item
-            android:id="@+id/Metodo2"
-            android:title="Metodo 2" />
+            android:id="@+id/Interpolacion"
+            android:title="Interpolación" />
         <item
-            android:id="@+id/Metodo3"
-            android:title="Metodo 3" />
+            android:id="@+id/GaussSiedel"
+            android:title="Gauss-Siedel" />
         <item
             android:id="@+id/Metodo4"
             android:title="Metodo 4" />
