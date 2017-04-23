@@ -4,50 +4,31 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:stretchColumns="*">
-    <TableRow
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Alto"
-            android:layout_gravity="center"/>
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:text="Ancho"
-            android:layout_gravity="center"/>
+    <TableRow>
+        <TextView android:text="Favor de introducir cuantos puntos existen en los datos"
+            android:layout_span="2"/>
     </TableRow>
     <TableRow
         android:layout_width="1dp"
         android:layout_height="wrap_content">
         <EditText
-            android:id="@+id/dialog_alto"
+            android:id="@+id/dialog_puntos_edittext"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:text="1"
-            android:textAlignment="center" />
-        <EditText
-            android:id="@+id/dialog_ancho"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="number"
-            android:text="1"
-            android:textAlignment="center"
-            />
-
+            android:textAlignment="center"/>
     </TableRow>
     <TableRow
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <Button
-            android:id="@+id/dialog_matrix_aceptar"
+            android:id="@+id/dialog_puntos_aceptar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Aceptar"/>
         <Button
-            android:id="@+id/dialog_matrix_cancelar"
+            android:id="@+id/dialog_puntos_cancelar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Cancelar"/>

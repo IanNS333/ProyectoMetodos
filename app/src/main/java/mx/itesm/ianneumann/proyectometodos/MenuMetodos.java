@@ -94,11 +94,11 @@ public class MenuMetodos extends AppCompatActivity
         switch (id){
             case(R.id.GaussJordan):
                 fragment  = new MetodoGaussJordan();
-                fragment.setArguments(getIntent().getExtras());
+                //fragment.setArguments(getIntent().getExtras());
                 break;
             case(R.id.Metodo2):
-                fragment = new MetodoPrueba();
-                fragment.setArguments(getIntent().getExtras());
+                fragment = new MetodoInterpolacion();
+                //fragment.setArguments(getIntent().getExtras());
                 break;
             case(R.id.Metodo3):
                 break;

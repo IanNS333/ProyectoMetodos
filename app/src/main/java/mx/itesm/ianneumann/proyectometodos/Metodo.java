@@ -1,5 +1,6 @@
 package mx.itesm.ianneumann.proyectometodos;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -7,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -18,7 +20,6 @@ public abstract class Metodo extends Fragment {
 
     protected int content_layout;
     protected int execute_id;
-    protected int metodo_aceptar;
     protected Button execute;
 
     protected MenuMetodos menu;
@@ -27,7 +28,7 @@ public abstract class Metodo extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState) {
         View view = inflater.inflate(content_layout,container,false);
 
-        execute = (Button)view.findViewById(metodo_aceptar);
+        execute = (Button)view.findViewById(execute_id);
         execute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,5 +44,13 @@ public abstract class Metodo extends Fragment {
     }
 
     protected abstract ArrayList<View> ejecutar();
+
+    protected TextView crearInstruccion(){
+        TextView texto = new TextView(getContext());
+        texto.setTextColor(Color.BLACK);
+        texto.setPadding(20,20,20,20);
+
+        return texto;
+    }
 
 }

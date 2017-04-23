@@ -29,7 +29,6 @@ public class MetodoGaussJordan extends MetodoUnaMatriz {
         content_layout = R.layout.content_gauss_jordan;
         table_id = R.id.gauss_jordan_table;
         execute_id = R.id.gauss_jordan_aceptar;
-        metodo_aceptar = R.id.gauss_jordan_aceptar;
         instrucciones = new ArrayList<>();
     }
 
@@ -90,12 +89,6 @@ public class MetodoGaussJordan extends MetodoUnaMatriz {
         return instrucciones;
     }
 
-    private TextView crearInstruccion(){
-        TextView texto = new TextView(getContext());
-        texto.setTextColor(Color.BLACK);
-        texto.setPadding(20,20,20,20);
 
-        return texto;
-    }
 
 }

@@ -26,7 +26,7 @@ public class Matrix {
     public Matrix(TableLayout table){
 
         TableRow tr;
-        datos = new ArrayList<ArrayList<Double>>(table.getChildCount());
+        datos = new ArrayList<>(table.getChildCount());
         for(int i = 0; i < table.getChildCount();i++) {
             tr = (TableRow) table.getChildAt(i);
             datos.add(new ArrayList<Double>(tr.getChildCount()));
@@ -34,6 +34,14 @@ public class Matrix {
                 datos.get(i).add(j,Double.parseDouble(((EditText) tr.getChildAt(j)).getText().toString()));
             }
         }
+    }
+
+    public Matrix(Matrix matrix){
+        datos = new ArrayList<>(matrix.getData());
+    }
+
+    public Matrix(ArrayList<ArrayList<Double>> datos){
+        this.datos = new ArrayList<>(datos);
     }
 
     public ArrayList<ArrayList<Double>> getData(){
@@ -95,6 +103,47 @@ public class Matrix {
     public TableLayout crearTablaResultado(TableLayout tableLayout){
         tableLayout.removeAllViews();
         return addData(tableLayout,datos,false);
+    }
+
+    public void inverse(){
+        for(int i = 0; i < datos.size();i++){
+            for(int j = 0; j < datos.size();j++){
+                datos.get(i).add(i==j?1.0:0.0);
+            }
+        }
+        GaussJordan();
+        ArrayList<ArrayList<Double>> d =  new ArrayList<>();
+        for(int i = 0; i < datos.size();i++){
+            d.add(new ArrayList<Double>());
+            for(int j = 0; j < datos.size();j++){
+                d.get(i).add(datos.get(i).get(j+datos.size()));
+            }
+        }
+        datos = new Matrix(d).getData();
+    }
+
+    public void multiply(Matrix B){
+        int p,q,r;
+        p = getData().size();
+        q = getData().get(0).size();
+        r = B.getData().get(0).size();
+
+        if(q != B.getData().size()){
+            throw new ArithmeticException("No se pueden multiplicar matrices que no coincidan");
+        }
+        ArrayList<ArrayList<Double>> resultado = new ArrayList<>();
+        Double suma;
+        for(int i = 0; i < p;i++){
+            resultado.add(new ArrayList<Double>());
+            for(int j = 0; j<r;j++){
+                suma = 0.0;
+                for(int k = 0; k < q;k++){
+                    suma += datos.get(i).get(k)*B.getData().get(k).get(j);
+                }
+                resultado.get(i).add(suma);
+            }
+        }
+        datos = resultado;
     }
 
     public static TableLayout crearTablaResultado(Matrix matriz,TableLayout tableLayout, Context context){
@@ -193,5 +242,61 @@ public class Matrix {
             res += "\n";
         }
         return res;
+    }
+
+    public void GaussJordan(){
+        Double coeficiente;
+        ArrayList<Double> temporal;
+
+        for(int i = 0; i < datos.size();i++){
+
+            multiplyRow(i,1/datos.get(i).get(i));
+
+            for (int j = 0; j < datos.size();j++){
+                if(i==j){
+                    continue;
+                }
+                coeficiente = datos.get(j).get(i);
+                temporal = new ArrayList<>(getRow(i));
+                Matrix.multiply(temporal,-coeficiente);
+                addRow(j,temporal);
+            }
+        }
+    }
+
+    public static Matrix GaussJordan(Matrix m){
+        Double coeficiente;
+        ArrayList<Double> temporal;
+
+        for(int i = 0; i < m.getData().size();i++){
+
+            m.multiplyRow(i,1/m.getData().get(i).get(i));
+
+            for (int j = 0; j < m.getData().size() && j!= i;j++){
+                coeficiente = m.getData().get(j).get(i);
+                temporal = new ArrayList<>(m.getRow(i));
+                Matrix.multiply(temporal,-coeficiente);
+                m.addRow(j,temporal);
+            }
+        }
+        return m;
+    }
+
+    public static Matrix inverse(Matrix m){
+        for(int i = 0; i < m.getData().size();i++){
+            for(int j = 0; j < m.getData().get(i).size();j++){
+                m.getData().get(i).add(i==j?1.0:0.0);
+            }
+        }
+        m.GaussJordan();
+        ArrayList<ArrayList<Double>> d =  new ArrayList<>();
+        for(int i = 0; i < m.getData().size();i++){
+            d.add(new ArrayList<Double>());
+            for(int j = 0; j < m.getData().size();j++){
+                d.get(i).add(m.getData().get(i).get(j+m.getData().size()));
+            }
+        }
+        m = new Matrix(d);
+        return m;
     }
 }

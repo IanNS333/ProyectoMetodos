@@ -18,7 +18,7 @@ public class MetodoPrueba extends MetodoUnaMatriz {
     public MetodoPrueba(){
         content_layout = R.layout.content_prueba;
         table_id = R.id.prueba_table;
-        metodo_aceptar = R.id.prueba_aceptar;
+        execute_id = R.id.prueba_aceptar;
     }
 
     @Override

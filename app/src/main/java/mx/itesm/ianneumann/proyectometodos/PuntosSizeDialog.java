@@ -13,14 +13,13 @@ import android.widget.EditText;
  * Created by Ian Neumann on 20/04/2017.
  */
 
-public class MatrizSizeDialog extends Dialog implements View.OnClickListener{
+public class PuntosSizeDialog extends Dialog implements View.OnClickListener{
 
-    private EditText Alto;
-    private EditText Ancho;
+    private EditText Puntos;
     private Button Aceptar;
     private Button Cancelar;
 
-    public MatrizSizeDialog(@NonNull Context context) {
+    public PuntosSizeDialog(@NonNull Context context) {
         super(context);
     }
 
@@ -29,11 +28,10 @@ public class MatrizSizeDialog extends Dialog implements View.OnClickListener{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.matrix_size_dialog);
-        Alto = (EditText) findViewById(R.id.dialog_alto);
-        Ancho = (EditText) findViewById(R.id.dialog_ancho);
-        Aceptar = (Button) findViewById(R.id.dialog_matrix_aceptar);
-        Cancelar = (Button) findViewById(R.id.dialog_matrix_cancelar);
+        setContentView(R.layout.puntos_size_dialog);
+        Puntos = (EditText) findViewById(R.id.dialog_puntos_edittext);
+        Aceptar = (Button) findViewById(R.id.dialog_puntos_aceptar);
+        Cancelar = (Button) findViewById(R.id.dialog_puntos_cancelar);
         Aceptar.setOnClickListener(this);
         Cancelar.setOnClickListener(this);
     }
@@ -41,10 +39,10 @@ public class MatrizSizeDialog extends Dialog implements View.OnClickListener{
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.dialog_matrix_aceptar:
+            case R.id.dialog_puntos_aceptar:
                 dismiss();
                 break;
-            case R.id.dialog_matrix_cancelar:
+            case R.id.dialog_puntos_cancelar:
                 dismiss();
                 break;
             default:
@@ -52,11 +50,8 @@ public class MatrizSizeDialog extends Dialog implements View.OnClickListener{
         }
     }
 
-    public int getAlto(){
-        return Integer.parseInt(Alto.getText().toString());
-    }
-    public int getAncho(){
-        return Integer.parseInt(Ancho.getText().toString());
+    public int getPuntos(){
+        return Integer.parseInt(Puntos.getText().toString());
     }
 
     public void setAceptarListener(View.OnClickListener listener){
