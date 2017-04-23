@@ -43,6 +43,12 @@ public class MetodoGaussJordan extends MetodoUnaMatriz {
         instrucciones.add(texto);
         instrucciones.add(m.crearTablaResultado(new TableLayout(getContext())));
         for(int i = 0; i < m.getData().size();i++){
+            if(m.getData().get(i).get(i) == 0 && i < m.getData().size()){
+                m.swapRows(i,i+1);
+                m.swapRows(i,m.getData().size()-1);
+                i--;
+                continue;
+            }
             texto = crearInstruccion();
 
             pivote = m.getData().get(i).get(i);

@@ -351,4 +351,11 @@ public class Matrix {
         }
         datos = nuevaMatriz;
     }
+
+    public void swapRows(int i, int j){
+        ArrayList<Double> temp;
+        temp = datos.get(i);
+        datos.set(i,datos.get(j));
+        datos.set(j,temp);
+    }
 }
