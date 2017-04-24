@@ -42,8 +42,14 @@ public class MetodoGaussJordan extends MetodoUnaMatriz {
         texto.setText("Dada la siguiente matriz:");
         instrucciones.add(texto);
         instrucciones.add(m.crearTablaResultado(new TableLayout(getContext())));
+
+        if(m.determinante() == 0){
+            instrucciones.add(crearInstruccion("Esta matriz tiene una infinidad de soluciones, por lo tanto no se puede resolver por este metodo"));
+            return instrucciones;
+        }
+
         for(int i = 0; i < m.getData().size();i++){
-            if(m.getData().get(i).get(i) == 0 && i < m.getData().size()){
+            if(m.getData().get(i).get(i) == 0){
                 m.swapRows(i,i+1);
                 m.swapRows(i,m.getData().size()-1);
                 i--;

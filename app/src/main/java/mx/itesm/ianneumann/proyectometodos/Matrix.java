@@ -1,6 +1,7 @@
 package mx.itesm.ianneumann.proyectometodos;
 
 import android.content.Context;
+import android.provider.MediaStore;
 import android.text.InputType;
 import android.view.Gravity;
 import android.widget.EditText;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.NavigableMap;
+import java.util.concurrent.ThreadFactory;
 
 /**
  * Created by Ian Neumann on 21/04/2017.
@@ -139,7 +141,7 @@ public class Matrix {
         datos = new Matrix(d).getData();
     }
 
-    public void multiply(Matrix B){
+    public void multiply(Matrix B) throws ArithmeticException {
         int p,q,r;
         p = getData().size();
         q = getData().get(0).size();
@@ -279,12 +281,21 @@ public class Matrix {
         return res;
     }
 
-    public void GaussJordan(){
+    public void GaussJordan() throws ArithmeticException{
         Double coeficiente;
         ArrayList<Double> temporal;
 
-        for(int i = 0; i < datos.size();i++){
+        if(determinante() == 0){
+            throw new ArithmeticException("Esta matriz tiene una infinidad de soluciones");
+        }
 
+        for(int i = 0; i < datos.size();i++){
+            if(datos.get(i).get(i) == 0){
+                swapRows(i,i+1);
+                swapRows(i,datos.size()-1);
+                i--;
+                continue;
+            }
             multiplyRow(i,1/datos.get(i).get(i));
 
             for (int j = 0; j < datos.size();j++){
@@ -300,20 +311,7 @@ public class Matrix {
     }
 
     public static Matrix GaussJordan(Matrix m){
-        Double coeficiente;
-        ArrayList<Double> temporal;
-
-        for(int i = 0; i < m.getData().size();i++){
-
-            m.multiplyRow(i,1/m.getData().get(i).get(i));
-
-            for (int j = 0; j < m.getData().size() && j!= i;j++){
-                coeficiente = m.getData().get(j).get(i);
-                temporal = new ArrayList<>(m.getRow(i));
-                Matrix.multiply(temporal,-coeficiente);
-                m.addToRow(j,temporal);
-            }
-        }
+        m.GaussJordan();
         return m;
     }
 
@@ -357,5 +355,39 @@ public class Matrix {
         temp = datos.get(i);
         datos.set(i,datos.get(j));
         datos.set(j,temp);
+    }
+
+    public double determinante(){
+        Matrix m = new Matrix(datos);
+
+        Double coeficiente;
+        ArrayList<Double> temporal;
+        int cambios = 0;
+        for(int i = 0; i < m.getData().size();i++){
+            /*if(m.getData().get(i).get(i) == 0){
+                if(i == m.getData().size()-1){
+                    return 0;
+                }
+                m.swapRows(i,i+1);
+                m.swapRows(i,m.getData().size()-1);
+                i--;
+                continue;
+
+            }*/
+            for (int j = 0; j < m.getData().size();j++){
+                if(i==j){
+                    continue;
+                }
+                coeficiente = m.getData().get(j).get(i);
+                temporal = new ArrayList<>(m.getRow(i));
+                Matrix.multiply(temporal,-coeficiente);
+                m.addToRow(j,temporal);
+            }
+        }
+        Double determinante = 1.0;
+        for(int i = 0; i < m.getData().size();i++){
+            determinante *= m.getData().get(i).get(i);
+        }
+        return (cambios%2==0?1:-1)*determinante;
     }
 }

@@ -53,4 +53,12 @@ public abstract class Metodo extends Fragment {
         return texto;
     }
 
+    protected TextView crearInstruccion(String cadena){
+        TextView texto = new TextView(getContext());
+        texto.setTextColor(Color.BLACK);
+        texto.setPadding(20,20,20,20);
+        texto.setText(cadena);
+        return texto;
+    }
+
 }
