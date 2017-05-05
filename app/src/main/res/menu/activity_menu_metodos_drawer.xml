@@ -13,13 +13,13 @@
             android:title="Gauss-Siedel" />
         <item
             android:id="@+id/Metodo4"
-            android:title="Metodo 4" />
+            android:title="Bisection" />
         <item
             android:id="@+id/Metodo5"
-            android:title="Metodo 5" />
+            android:title="Newton-Raphson" />
         <item
             android:id="@+id/Metodo6"
-            android:title="Metodo 6" />
+            android:title="Secant" />
     </group>
 
 </menu>

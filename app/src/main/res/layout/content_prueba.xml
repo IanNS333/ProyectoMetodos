@@ -12,8 +12,8 @@
     <TableRow
         android:layout_height="1dp"
         android:layout_width="match_parent">
-        <TextView
-            android:text="metodo de prueba a asdsa da sd as d asdasd asd asdasdasdasd"/>
+
+        <TextView android:text="pikachusucks" />
     </TableRow>
 
     <TableRow
@@ -24,10 +24,14 @@
             android:layout_height="match_parent">
         </TableLayout>
     </TableRow>
-    <TableRow android:layout_width="match_parent">
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
         <Button
-            android:text="Aceptar"
+            android:id="@+id/prueba_aceptar"
             android:layout_width="match_parent"
-            android:id="@+id/prueba_aceptar"/>
+            android:text="Aceptar" />
     </TableRow>
 </TableLayout>

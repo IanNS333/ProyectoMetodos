@@ -1,0 +1,66 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mx.itesm.ianneumann.proyectometodos.MenuMetodos">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/secant_function"
+        android:hint="function"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        />
+
+
+    <EditText
+        android:id="@+id/secant_guess1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned|numberDecimal"
+        android:hint="guess 1"
+        android:layout_below="@+id/secant_function"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/secant_guess2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned|numberDecimal"
+        android:layout_alignBaseline="@+id/secant_guess1"
+        android:layout_alignBottom="@+id/secant_guess1"
+        android:hint="guess 2"
+        android:layout_toEndOf="@+id/secant_guess1" />
+
+    <Button
+        android:id="@+id/secant_aceptar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/secant_guess2"
+        android:layout_marginEnd="38dp"
+        android:layout_marginRight="38dp"
+        android:text="Go" />
+
+    <EditText
+        android:id="@+id/secant_presicion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="presicion"
+        android:inputType="numberSigned|numberDecimal"
+        android:layout_alignBaseline="@+id/secant_aceptar"
+        android:layout_alignBottom="@+id/secant_aceptar"
+        android:layout_alignParentStart="true" />
+
+
+
+</RelativeLayout>
+
+

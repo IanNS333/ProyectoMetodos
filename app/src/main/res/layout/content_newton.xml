@@ -1,0 +1,61 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="mx.itesm.ianneumann.proyectometodos.MenuMetodos">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/newton_function"
+        android:hint="function"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
+
+
+    <EditText
+        android:id="@+id/newton_dfdx"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned|numberDecimal"
+        android:hint="derivative"
+        android:layout_below="@+id/newton_function"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
+
+    <EditText
+        android:id="@+id/newton_guess"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="numberSigned|numberDecimal"
+        android:hint="guess"
+        android:layout_below="@+id/newton_dfdx"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/newton_presicion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="presicion"
+        android:inputType="numberSigned|numberDecimal"
+        android:layout_below="@+id/newton_aceptar"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/newton_aceptar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="38dp"
+        android:text="Go"
+        android:layout_below="@+id/newton_dfdx"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="308dp" />
+
+
+
+
+</RelativeLayout>
+

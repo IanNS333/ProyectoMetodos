@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TableLayout;
 
 /**
- * Created by Ian Neumann on 22/04/2017.
+ Created by Ian Neumann on 22/04/2017.
  */
 
 public abstract class MetodoPuntos extends Metodo {

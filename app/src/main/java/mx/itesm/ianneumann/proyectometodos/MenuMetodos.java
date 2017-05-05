@@ -104,10 +104,13 @@ public class MenuMetodos extends AppCompatActivity
                 fragment = new MetodoGaussSiedel();
                 break;
             case(R.id.Metodo4):
+                fragment = new MetodoBiseccion();
                 break;
             case(R.id.Metodo5):
+                fragment = new MetodoNewton();
                 break;
             case(R.id.Metodo6):
+                fragment = new MetodoSecante();
                 break;
         }
 
