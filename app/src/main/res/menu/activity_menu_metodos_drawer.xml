@@ -19,7 +19,7 @@
             android:title="Newton-Raphson" />
         <item
             android:id="@+id/Metodo6"
-            android:title="Secant" />
+            android:title="Secante" />
     </group>
 
 </menu>

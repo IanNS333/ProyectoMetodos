@@ -39,10 +39,10 @@ public class EcuacionesSizeDialog extends Dialog implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.dialog_matrix_aceptar:
+            case R.id.dialog_ecuaciones_aceptar:
                 dismiss();
                 break;
-            case R.id.dialog_matrix_cancelar:
+            case R.id.dialog_ecuaciones_cancelar:
                 dismiss();
                 break;
             default:

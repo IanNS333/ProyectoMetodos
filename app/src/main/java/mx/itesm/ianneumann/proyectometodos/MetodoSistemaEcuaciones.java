@@ -18,11 +18,6 @@ public abstract class MetodoSistemaEcuaciones extends Metodo {
     protected TableLayout tableLayout;
     protected int table_id;
 
-    private boolean initiated = false;
-
-    private int ecuaciones;
-
-    private ArrayList<ArrayList<Double>> datos;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle SavedInstanceState) {
@@ -36,7 +31,6 @@ public abstract class MetodoSistemaEcuaciones extends Metodo {
                 ecuacionesSizeDialog.dismiss();
             }
         });
-        ecuaciones = ecuacionesSizeDialog.getEcuaciones();
 
         tableLayout = (TableLayout) view.findViewById(table_id);
         Matrix.crearTablaVacía(tableLayout,1,2);
